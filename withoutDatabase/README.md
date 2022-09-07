@@ -1,1 +1,0 @@
-# lista_compras_ionic
