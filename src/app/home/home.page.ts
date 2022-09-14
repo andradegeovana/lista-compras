@@ -21,8 +21,9 @@ export class HomePage {
   variavel_valor = [];
   texto: string = "";
   valor: number;
-  soma: number = 0;
-  aux = 0;
+  soma: number = 0.0;
+  somaFixed: string = "";
+  aux = 0.0;
 
   async adiciona() {
     if (!(this.texto == "")){
@@ -33,15 +34,15 @@ export class HomePage {
       
 
       this.variavel_lista.forEach(item => {
-        if(parseInt(item[0]) > this.aux) {
-          this.aux = parseInt(item[0]);
+        if(parseFloat(item[0]) > this.aux) {
+          this.aux = parseFloat(item[0]);
         }
       })
-      this.aux = this.aux + 1;
-      await this.storage.set(this.aux.toString(), [this.texto, this.valor]);
+      this.aux = this.aux + 1.0;
+      await this.storage.set(this.aux.toString(), [this.texto, Number(this.valor).toFixed(2)]);
       this.atualizaLista();
       this.texto = "";
-      this.valor = 0;
+      this.valor = 0.0;
 
       this.valor = null;
       
@@ -55,20 +56,24 @@ export class HomePage {
   }
 
   somar(valor) {
-    this.soma = this.soma + valor;
+    this.soma +=  valor;
+    this.somaFixed = Number(this.soma).toFixed(2);
+    
   }
 
   atualizaLista() {
     this.variavel_lista = [];
-    this.soma = 0;
+    this.soma = 0.0;
     this.storage.forEach((value, key, index) => {
       this.variavel_lista.push([key, value]);
-      this.somar(parseFloat(value[1]))
+      console.log("olá", +value[1], typeof value[1])
+      this.somar(+value[1])
     })
+    
   }
 
   async remove(indice1, indice2 = indice1 - 1) {
-    this.soma = this.soma - parseInt(this.variavel_valor[indice2]);
+    this.soma = this.soma - parseFloat(this.variavel_valor[indice2]);
     //this.variavel_lista.splice(indice, 1)
     console.log(indice1, indice2)
     console.log(this.soma)

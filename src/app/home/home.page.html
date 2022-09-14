@@ -16,7 +16,7 @@
         </ion-col>
         <ion-col size="3">
           <ion-item>
-            <ion-input placeholder="Valor" [(ngModel)]="valor"></ion-input>
+            <ion-input placeholder="Valor" [(ngModel)]="valor" (keyup.enter)="adiciona()"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col size="2">
@@ -46,10 +46,10 @@
                 <ion-col size="6">
                   {{elemento_da_lista[1][0]}}
                 </ion-col>
-                <ion-col size="3">
+                <ion-col size="4">
                   R$ {{elemento_da_lista[1][1]}}
                 </ion-col>
-                <ion-col size="2">
+                <ion-col size="1">
                   <ion-button color="danger" size="small" (click)="remove(elemento_da_lista[0][0])">
                     <ion-icon name="trash-outline"></ion-icon>
                   </ion-button>
@@ -61,11 +61,11 @@
       </ion-row>
       <div id="total">
         <ion-row *ngIf = "variavel_lista.length != 0">
-          <ion-col size="6">
+          <ion-col size="8">
             Total da compra
           </ion-col>
-          <ion-col size="6">
-            R$ {{soma}} 
+          <ion-col size="4">
+            R$ {{somaFixed}} 
           </ion-col>
         </ion-row>
       </div>

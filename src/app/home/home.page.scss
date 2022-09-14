@@ -30,6 +30,7 @@
 #total {
   font-weight: 200;
   color: black;
+  background-color: rgba(255, 255, 255, 0.336);
   //-webkit-text-stroke: 0.5px white;
 }
 
@@ -51,4 +52,8 @@ ion-box {
   padding: 10%;
   padding-top: 60%;
   
+}
+
+ion-item {
+  font-size: 15px;
 }
